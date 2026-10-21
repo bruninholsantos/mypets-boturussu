@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="My Pets Boturussu: clínica veterinária para cães e gatos no Parque Boturussu, São Paulo. Especialidades, convênios Doglife, Petlife e Petlove. Agende pelo WhatsApp (11) 99418-1498.">
+<link rel="icon" href="assets/logo.png">
+<title>My Pets Boturussu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Allura&display=swap">
+<style>
+/* Layout: uma "trilha de patinhas" contínua costura as seções; cada seção é um cômodo da clínica que você visita descendo a página. */
+:root{
+  --cream:#F6F1EA; --paper:#FFFCF8; --brown:#6E5240; --brown-ink:#4A3628; --sage:#7A8A70; --sage-soft:#E4E9DD;
+  --blush:#E3B3AA; --blush-soft:#F8E4DF; --rose:#C98A84; --line:#E6DCD0; --muted:#7D6B5E;
+  --star:#D9A441; --on-accent:#FFFCF8; --shadow:rgba(74,54,40,.10);
+  --f-display:"Gilda Display","Cormorant Garamond",Georgia,serif;
+  --f-body:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-script:"Allura","Brush Script MT",cursive;
+  --r:22px; --maxw:1160px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --cream:#1F1813; --paper:#2A211B; --brown:#E9CDB8; --brown-ink:#F5E8DC; --sage:#A9BA9D; --sage-soft:#2C3328;
+  --blush:#D89D94; --blush-soft:#3A2925; --rose:#E3A7A0; --line:#3B2F27; --muted:#BFAA9A;
+  --star:#E8B85A; --on-accent:#1F1813; --shadow:rgba(0,0,0,.35); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --cream:#1F1813; --paper:#2A211B; --brown:#E9CDB8; --brown-ink:#F5E8DC; --sage:#A9BA9D; --sage-soft:#2C3328;
+  --blush:#D89D94; --blush-soft:#3A2925; --rose:#E3A7A0; --line:#3B2F27; --muted:#BFAA9A;
+  --star:#E8B85A; --on-accent:#1F1813; --shadow:rgba(0,0,0,.35); color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--brown-ink);font-family:var(--f-body);font-size:16px;line-height:1.65;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--cream)}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;color:var(--brown);text-wrap:balance;line-height:1.08;margin:0}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sage);outline-offset:3px;border-radius:8px}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.eyebrow{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--sage);display:inline-flex;align-items:center;gap:.6em}
+.eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
+.script{font-family:var(--f-script);color:var(--rose);font-weight:400}
+.btn{display:inline-flex;align-items:center;gap:.6em;padding:.9em 1.5em;border-radius:999px;font-weight:600;font-size:.95rem;text-decoration:none;transition:transform .25s,box-shadow .25s,background .25s;border:0;cursor:pointer;font-family:inherit}
+.btn-primary{background:var(--brown);color:var(--on-accent);box-shadow:0 10px 24px -10px var(--brown)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 30px -12px var(--brown)}
+.btn-ghost{background:transparent;color:var(--brown);box-shadow:inset 0 0 0 1.5px var(--brown)}
+.btn-ghost:hover{background:var(--blush-soft)}
+.btn svg{width:18px;height:18px;flex:none}
+
+/* ---------- header ---------- */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;transition:background .3s,box-shadow .3s}
+.top.scrolled{background:color-mix(in srgb,var(--cream) 88%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand .badge{width:46px;height:46px;border-radius:50%;background:#FBF6EF;display:grid;place-items:center;box-shadow:0 0 0 1px var(--line);flex:none}
+.brand .badge img{width:40px}
+.brand b{font-family:var(--f-display);font-weight:400;font-size:1.25rem;color:var(--brown);line-height:1}
+.brand small{display:block;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.nav{display:flex;gap:4px;align-items:center}
+.nav a{font-size:.86rem;font-weight:500;text-decoration:none;padding:.5em .85em;border-radius:999px;color:var(--brown);position:relative}
+.nav a:hover,.nav a.on{background:var(--blush-soft)}
+.top .btn{padding:.7em 1.15em;font-size:.86rem}
+@media (max-width:900px){.nav{display:none}}
+@media (max-width:420px){.brand small{display:none}.top .btn span{display:none}.top .btn{padding:.7em}}
+
+/* ---------- trilha (spine) ---------- */
+#trail{position:absolute;left:0;top:0;width:100%;pointer-events:none;z-index:0;overflow:visible}
+#trail .base{fill:none;stroke:var(--line);stroke-width:2;stroke-dasharray:2 10;stroke-linecap:round}
+#trail .live{fill:none;stroke:var(--blush);stroke-width:3;stroke-linecap:round}
+#trail .paw{fill:var(--rose);opacity:0;transform-box:fill-box;transform-origin:center;transition:opacity .5s,transform .5s cubic-bezier(.3,1.6,.5,1)}
+#trail .paw.on{opacity:.9}
+main{position:relative}
+section{position:relative;z-index:1}
+.node{width:16px;height:16px;border-radius:50%;background:var(--cream);box-shadow:0 0 0 3px var(--blush);display:inline-block;flex:none;transition:background .4s,box-shadow .4s}
+.node.lit{background:var(--blush);box-shadow:0 0 0 6px var(--blush-soft)}
+
+/* ---------- hero ---------- */
+.hero{padding-block:clamp(28px,6vw,72px) clamp(56px,8vw,110px)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,64px);align-items:center}
+.hero h1{font-size:clamp(2.6rem,6.4vw,5.2rem);letter-spacing:-.01em}
+.hero h1 .script{display:block;font-size:.72em;line-height:1;margin-top:.1em}
+.hero .lede{font-size:clamp(1rem,1.6vw,1.15rem);color:var(--muted);max-width:34em;margin-top:22px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero .facts{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:34px;font-size:.88rem;color:var(--muted)}
+.hero .facts span{display:inline-flex;align-items:center;gap:8px}
+.hero .facts b{color:var(--brown);font-weight:600}
+.hero .facts svg{width:16px;height:16px;color:var(--sage)}
+.medallion{position:relative;aspect-ratio:1;max-width:460px;width:100%;justify-self:center}
+.medallion .disc{position:absolute;inset:6%;border-radius:50%;background:#FBF6EF;box-shadow:0 30px 60px -30px var(--shadow),0 0 0 1px var(--line);display:grid;place-items:center;overflow:hidden}
+.medallion .disc img{width:78%;transform:translateY(2%)}
+.medallion .ring{position:absolute;inset:0;border-radius:50%;border:1.5px dashed var(--blush);animation:spin 60s linear infinite}
+.medallion .chip{position:absolute;background:var(--paper);border-radius:999px;padding:.55em 1em .55em .6em;display:flex;align-items:center;gap:.55em;font-size:.82rem;font-weight:600;color:var(--brown);box-shadow:0 14px 30px -14px var(--shadow),0 0 0 1px var(--line);white-space:nowrap}
+.medallion .chip i{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-style:normal}
+.medallion .chip svg{width:16px;height:16px}
+.chip.c1{top:8%;left:-4%}.chip.c1 i{background:var(--blush-soft);color:var(--rose)}
+.chip.c2{bottom:14%;right:-6%}.chip.c2 i{background:var(--sage-soft);color:var(--sage)}
+.chip.c3{bottom:-2%;left:10%}.chip.c3 i{background:#FBEFD6;color:#B9822A}
+.float{animation:bob 6s ease-in-out infinite}
+.c2.float{animation-delay:-2s}.c3.float{animation-delay:-4s}
+.bgpaw{position:absolute;color:var(--blush);opacity:.28;z-index:0;pointer-events:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bob{50%{transform:translateY(-8px)}}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.medallion{max-width:340px;order:-1}.chip.c1{left:0}.chip.c2{right:0}}
+
+/* ---------- pilares ---------- */
+.pillars{padding-block:20px clamp(70px,9vw,120px)}
+.pillars .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.pillar{background:var(--paper);border-radius:var(--r);padding:26px 22px;box-shadow:0 0 0 1px var(--line);display:flex;flex-direction:column;gap:12px}
+.pillar .ic{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:var(--blush-soft);color:var(--rose)}
+.pillar:nth-child(2) .ic{background:var(--sage-soft);color:var(--sage)}
+.pillar:nth-child(4) .ic{background:var(--sage-soft);color:var(--sage)}
+.pillar .ic svg{width:28px;height:28px}
+.pillar h3{font-family:var(--f-body);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--muted);line-height:1.4}
+.pillar h3 b{display:block;font-weight:700;color:var(--brown);font-size:1.02rem;letter-spacing:.04em}
+.pillar p{font-size:.92rem;color:var(--muted)}
+@media (max-width:900px){.pillars .grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.pillars .grid{grid-template-columns:1fr}}
+
+/* ---------- section heads ---------- */
+.head{display:flex;flex-direction:column;gap:14px;max-width:720px;margin-bottom:clamp(30px,5vw,54px)}
+.head .row{display:flex;align-items:center;gap:14px}
+.head h2{font-size:clamp(2.2rem,4.6vw,3.6rem)}
+.head p{color:var(--muted);font-size:1.04rem;max-width:40em}
+
+/* ---------- especialidades ---------- */
+.spec{padding-block:clamp(70px,9vw,120px)}
+.spec .stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(20px,4vw,48px);align-items:start}
+.spec-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sp{all:unset;box-sizing:border-box;cursor:pointer;background:var(--paper);border-radius:18px;padding:16px;display:flex;align-items:center;gap:14px;box-shadow:0 0 0 1px var(--line);transition:transform .3s,box-shadow .3s,background .3s;position:relative}
+.sp:hover{transform:translateY(-3px);box-shadow:0 0 0 1px var(--blush),0 16px 30px -18px var(--shadow)}
+.sp .ic{width:52px;height:52px;border-radius:14px;background:#FBF6EF;display:grid;place-items:center;flex:none;transition:background .3s}
+.sp .ic svg{width:34px;height:34px}
+.sp b{font-weight:600;color:var(--brown);font-size:.98rem;line-height:1.25;display:block}
+.sp small{color:var(--muted);font-size:.78rem}
+.sp[aria-selected="true"]{background:var(--brown);box-shadow:0 18px 36px -18px var(--brown)}
+.sp[aria-selected="true"] b{color:var(--on-accent)}
+.sp[aria-selected="true"] small{color:color-mix(in srgb,var(--on-accent) 75%,transparent)}
+.sp[aria-selected="true"] .ic{background:#FBF6EF}
+.sp:focus-visible{outline:3px solid var(--sage);outline-offset:3px}
+.sp.more{background:transparent;box-shadow:inset 0 0 0 1.5px dashed var(--line);border:1.5px dashed var(--blush);cursor:default}
+.sp.more:hover{transform:none;box-shadow:none}
+.sp.more .ic{background:var(--blush-soft)}
+.spec-panel{position:sticky;top:96px;background:var(--paper);border-radius:28px;box-shadow:0 0 0 1px var(--line),0 40px 80px -50px var(--shadow);overflow:hidden}
+.spec-panel .art{aspect-ratio:16/10;max-width:100%;background:var(--blush-soft);display:grid;place-items:center;position:relative;overflow:hidden;transition:background .5s}
+.spec-panel .art svg.big{width:46%;height:auto;position:relative;z-index:1}
+.spec-panel .art .halo{position:absolute;width:62%;aspect-ratio:1;border-radius:50%;background:#FBF6EF;opacity:.85}
+.spec-panel .art .num{position:absolute;right:22px;top:18px;font-family:var(--f-display);font-size:1rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.spec-panel .body{padding:28px clamp(22px,3vw,36px) 32px;display:flex;flex-direction:column;gap:14px}
+.spec-panel h3{font-size:clamp(1.9rem,3.2vw,2.6rem)}
+.spec-panel .desc{color:var(--muted)}
+.spec-panel ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.spec-panel li{font-size:.8rem;font-weight:500;padding:.4em .85em;border-radius:999px;background:var(--cream);color:var(--brown);box-shadow:0 0 0 1px var(--line)}
+.spec-panel .swap{animation:swapin .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes swapin{from{transform:translateY(12px);opacity:.2}}
+.services{margin-top:clamp(30px,5vw,48px);display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.services span{font-size:.86rem;font-weight:500;padding:.55em 1em;border-radius:999px;background:var(--sage-soft);color:var(--brown)}
+.services em{font-style:normal;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+@media (max-width:900px){.spec .stage{grid-template-columns:1fr}.spec-panel{position:relative;top:0;order:-1}}
+@media (max-width:440px){.spec-list{grid-template-columns:1fr}}
+
+/* ---------- convênios ---------- */
+.conv{padding-block:clamp(70px,9vw,120px)}
+.conv .band{background:var(--blush-soft);border-radius:clamp(24px,4vw,40px);padding:clamp(30px,5vw,64px);position:relative;overflow:hidden}
+.conv .band::after{content:"";position:absolute;right:-80px;bottom:-80px;width:300px;height:300px;border-radius:50%;border:2px dashed var(--blush);opacity:.6}
+.conv .lay{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(24px,4vw,56px);align-items:center;position:relative;z-index:1}
+.conv .head{margin-bottom:22px}
+.conv .note{font-size:.88rem;color:var(--muted);display:flex;gap:10px;align-items:flex-start;max-width:30em}
+.conv .note svg{width:18px;height:18px;flex:none;margin-top:3px;color:var(--rose)}
+.cards{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;perspective:1200px}
+.card{position:relative;aspect-ratio:.66;max-width:100%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.2,.8,.2,1);cursor:pointer}
+.card:nth-child(1){transform:rotate(-4deg) translateY(10px)}
+.card:nth-child(3){transform:rotate(4deg) translateY(10px)}
+.card.flip{transform:rotateY(180deg)}
+.card .face{position:absolute;inset:0;border-radius:22px;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:20px 18px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 26px 50px -28px rgba(74,54,40,.45);overflow:hidden}
+.card .front{color:#fff}
+.card .back{transform:rotateY(180deg);background:#FFFCF8;color:#4A3628;box-shadow:0 0 0 1px #E6DCD0,0 26px 50px -28px rgba(74,54,40,.45)}
+.card .chipm{width:38px;height:28px;border-radius:6px;background:linear-gradient(135deg,#F3D9A4,#C99C4F);box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+.card .label{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;opacity:.85;font-weight:600}
+.card .name{font-family:var(--f-display);font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1}
+.card .foot{display:flex;justify-content:space-between;align-items:flex-end;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
+.card .foot svg{width:30px;height:30px;opacity:.9}
+.card .deco{position:absolute;right:-30px;top:30%;width:130px;height:130px;opacity:.16}
+.card.k1 .front{background:linear-gradient(160deg,#8C9C80,#5F6F55)}
+.card.k2 .front{background:linear-gradient(160deg,#D9A39B,#B5766F)}
+.card.k3 .front{background:linear-gradient(160deg,#8A6A55,#5A4232)}
+.card .back h4{margin:0;font-family:var(--f-display);font-weight:400;font-size:1.35rem;color:#6E5240}
+.card .back p{font-size:.8rem;color:#7D6B5E;line-height:1.5}
+.card .back .go{text-decoration:none;font-size:.78rem;font-weight:700;color:#6E5240;display:inline-flex;gap:6px;align-items:center}
+.cards-hint{margin-top:18px;font-size:.8rem;color:var(--muted);text-align:center}
+@media (max-width:900px){.conv .lay{grid-template-columns:1fr}}
+@media (max-width:560px){.cards{grid-template-columns:1fr;max-width:280px;margin-inline:auto}.card{aspect-ratio:1.55}.card:nth-child(n){transform:none}.card.flip{transform:rotateY(180deg)}.card .deco{top:-10px}}
+
+/* ---------- avaliações ---------- */
+.rev{padding-block:clamp(70px,9vw,120px);overflow:hidden}
+.rev .lay{display:grid;grid-template-columns:320px minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+.score{background:var(--paper);border-radius:var(--r);padding:28px;box-shadow:0 0 0 1px var(--line);display:flex;flex-direction:column;gap:16px}
+.score .g{display:flex;align-items:center;gap:10px;font-size:.85rem;font-weight:600;color:var(--muted)}
+.score .g svg{width:22px;height:22px}
+.score .big{display:flex;align-items:baseline;gap:12px}
+.score .big strong{font-family:var(--f-display);font-weight:400;font-size:4.4rem;line-height:1;color:var(--brown);font-variant-numeric:tabular-nums}
+.stars{display:inline-flex;gap:2px;color:var(--star)}
+.stars svg{width:18px;height:18px}
+.score .count{font-size:.86rem;color:var(--muted)}
+.bars{display:flex;flex-direction:column;gap:7px;font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.bars div{display:grid;grid-template-columns:14px 1fr 30px;align-items:center;gap:10px}
+.bars i{height:7px;border-radius:9px;background:var(--line);overflow:hidden;position:relative;display:block}
+.bars i::after{content:"";position:absolute;inset:0;width:var(--w);background:var(--star);border-radius:9px;transform-origin:left;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.bars.pre i::after{transform:scaleX(.08)}
+.bars span{text-align:right}
+.score .btn{justify-content:center}
+.quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.q{background:var(--paper);border-radius:var(--r);padding:24px;box-shadow:0 0 0 1px var(--line);display:flex;flex-direction:column;gap:14px;position:relative}
+.q:nth-child(1){grid-column:span 2;background:var(--sage-soft);box-shadow:none}
+.q:nth-child(1) blockquote{font-family:var(--f-display);font-size:clamp(1.25rem,2vw,1.55rem);line-height:1.35;color:var(--brown)}
+.q blockquote{margin:0;font-size:.95rem;color:var(--brown-ink)}
+.q .who{display:flex;align-items:center;gap:12px;margin-top:auto}
+.q .av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#FFFCF8;font-size:.9rem;flex:none}
+.q .who b{display:block;font-size:.9rem;color:var(--brown)}
+.q .who small{font-size:.76rem;color:var(--muted)}
+.q .mark{position:absolute;right:20px;top:14px;font-family:var(--f-display);font-size:4rem;line-height:1;color:var(--blush);opacity:.6}
+@media (max-width:900px){.rev .lay{grid-template-columns:1fr}.score{max-width:420px}}
+@media (max-width:620px){.quotes{grid-template-columns:1fr}.q:nth-child(1){grid-column:auto}}
+
+/* ---------- visita ---------- */
+.visit{padding-block:clamp(70px,9vw,120px) clamp(50px,6vw,80px)}
+.visit .lay{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,48px);align-items:stretch}
+.info{display:flex;flex-direction:column;gap:12px}
+.row-i{display:flex;gap:16px;align-items:flex-start;background:var(--paper);border-radius:18px;padding:18px 20px;box-shadow:0 0 0 1px var(--line)}
+.row-i .ic{width:44px;height:44px;border-radius:12px;background:var(--blush-soft);color:var(--rose);display:grid;place-items:center;flex:none}
+.row-i .ic svg{width:22px;height:22px}
+.row-i small{display:block;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.row-i b{font-weight:600;color:var(--brown);font-size:1.02rem;user-select:all}
+.row-i p{font-size:.86rem;color:var(--muted)}
+.copy{all:unset;cursor:pointer;margin-left:auto;font-size:.74rem;font-weight:600;color:var(--sage);padding:.35em .7em;border-radius:999px;box-shadow:inset 0 0 0 1px var(--sage);align-self:center}
+.copy:focus-visible{outline:2px solid var(--sage);outline-offset:2px}
+.mapcard{border-radius:28px;overflow:hidden;position:relative;min-height:340px;background:var(--sage-soft);box-shadow:0 0 0 1px var(--line);display:flex;flex-direction:column;justify-content:flex-end}
+.mapcard canvas{position:absolute;inset:0;width:100%;height:100%}
+.mapcard .pin{position:absolute;left:50%;top:44%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;gap:6px;z-index:2}
+.mapcard .pin .dot{width:64px;height:64px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--brown);display:grid;place-items:center;box-shadow:0 14px 30px -10px var(--brown)}
+.mapcard .pin .dot span{transform:rotate(45deg);width:40px;height:40px;border-radius:50%;background:#FBF6EF;display:grid;place-items:center}
+.mapcard .pin .dot img{width:32px}
+.mapcard .pin .pulse{position:absolute;bottom:-14px;width:24px;height:8px;border-radius:50%;background:var(--brown);opacity:.25;animation:pulse 2s ease-out infinite}
+@keyframes pulse{50%{transform:scale(2.4);opacity:.05}}
+.mapcard .cap{position:relative;z-index:2;margin:16px;background:var(--paper);border-radius:18px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;box-shadow:0 18px 40px -20px var(--shadow)}
+.mapcard .cap b{font-family:var(--f-display);font-weight:400;font-size:1.25rem;color:var(--brown)}
+.mapcard .cap p{font-size:.82rem;color:var(--muted)}
+@media (max-width:860px){.visit .lay{grid-template-columns:1fr}}
+
+/* ---------- footer ---------- */
+footer{position:relative;z-index:1;padding-block:40px 50px;border-top:1px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+footer p{font-size:.82rem;color:var(--muted)}
+footer .sig{font-family:var(--f-script);font-size:1.9rem;color:var(--rose)}
+.social{display:flex;gap:10px}
+.social a{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1px var(--line);color:var(--brown);transition:background .25s}
+.social a:hover{background:var(--blush-soft)}
+.social svg{width:20px;height:20px}
+
+/* whatsapp float */
+.wa{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:55;width:58px;height:58px;border-radius:50%;background:var(--sage);color:#fff;display:grid;place-items:center;box-shadow:0 16px 34px -12px var(--sage);transition:transform .3s}
+.wa:hover{transform:scale(1.07)}
+.wa svg{width:28px;height:28px}
+
+/* reveal: começa visível; só desliza um pouco */
+.rv{transition:transform .9s cubic-bezier(.2,.8,.2,1),opacity .9s}
+.js .rv.below{transform:translateY(34px);opacity:.35}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js .rv.below{transform:none;opacity:1}
+}
+</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="paw" viewBox="0 0 64 64"><ellipse cx="32" cy="42" rx="14" ry="12"/><ellipse cx="14" cy="26" rx="6" ry="8" transform="rotate(-18 14 26)"/><ellipse cx="26" cy="15" rx="6" ry="8.5" transform="rotate(-6 26 15)"/><ellipse cx="39" cy="15" rx="6" ry="8.5" transform="rotate(6 39 15)"/><ellipse cx="51" cy="26" rx="6" ry="8" transform="rotate(18 51 26)"/></symbol>
+    <symbol id="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.6l2.9 6 6.5.8-4.8 4.5 1.2 6.5L12 17.3l-5.8 3.1 1.2-6.5L2.6 9.4l6.5-.8z"/></symbol>
+    <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.2 21.8l5.1-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3 2.7 2.7 0 0 0-.8 2 4.6 4.6 0 0 0 1 2.5 10.6 10.6 0 0 0 4.1 3.6c1.5.7 2.1.7 2.9.6.5-.1 1.4-.6 1.6-1.1s.2-1 .1-1.1-.2-.2-.4-.3z"/></symbol>
+  </defs>
+</svg>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="My Pets Boturussu — início">
+      <span class="badge"><img src="assets/logo.webp" alt=""></span>
+      <span><b>My Pets</b><small>Boturussu · Clínica Veterinária</small></span>
+    </a>
+    <nav class="nav" aria-label="Seções">
+      <a href="#especialidades">Especialidades</a>
+      <a href="#convenios">Convênios</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#visita">Como chegar</a>
+    </nav>
+    <a class="btn btn-primary" href="https://wa.me/5511994181498" target="_blank" rel="noopener"><svg><use href="#wa"/></svg><span>Agendar</span></a>
+  </div>
+</header>
+
+<main id="main">
+  <svg id="trail" aria-hidden="true"><path class="base"/><path class="live"/><g class="paws"></g></svg>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio" data-stop>
+    <svg class="bgpaw" style="width:90px;left:4%;top:62%;transform:rotate(-24deg)"><use href="#paw" fill="currentColor"/></svg>
+    <svg class="bgpaw" style="width:60px;right:42%;top:8%;transform:rotate(18deg)"><use href="#paw" fill="currentColor"/></svg>
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Parque Boturussu · Ermelino Matarazzo</span>
+        <h1 style="margin-top:18px">Cuidado e carinho <span class="script">em cada patinha</span></h1>
+        <p class="lede">Clínica veterinária para cães e gatos, com consultas, exames, vacinas, cirurgias, banho e tosa e uma equipe de especialistas que acompanha seu pet de perto, do primeiro filhote ao último ronronar.</p>
+        <div class="ctas">
+          <a class="btn btn-primary" href="https://wa.me/5511994181498" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Agendar pelo WhatsApp</a>
+          <a class="btn btn-ghost" href="#especialidades">Ver especialidades</a>
+        </div>
+        <div class="facts">
+          <span><svg viewBox="0 0 24 24"><use href="#star"/></svg><b>4,7</b> no Google · 215 avaliações</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>Doglife · Petlife · Petlove</span>
+        </div>
+      </div>
+      <div class="medallion" id="medal">
+        <div class="ring"></div>
+        <div class="disc"><img src="assets/logo.webp" alt="Logo My Pets Boturussu Clínica Veterinária: cão e gato em traço com cruz verde"></div>
+        <div class="chip c1 float"><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.4-9.3C1.2 8.1 3.4 4.5 7 4.5c2 0 3.6 1.1 5 2.8 1.4-1.7 3-2.8 5-2.8 3.6 0 5.8 3.6 4.4 7.2C19.5 16.4 12 21 12 21z"/></svg></i>Atendimento com carinho</div>
+        <div class="chip c2 float"><i><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg></i>7 especialidades</div>
+        <div class="chip c3 float"><i><svg viewBox="0 0 24 24"><use href="#star"/></svg></i>4,7 no Google</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILARES -->
+  <section class="pillars" aria-label="Nossos compromissos">
+    <div class="wrap">
+      <div class="grid">
+        <article class="pillar rv">
+          <div class="ic"><svg viewBox="0 0 64 64" fill="currentColor"><use href="#paw"/></svg></div>
+          <h3>Atendimento <b>com carinho</b></h3>
+          <p>Seu pet é recebido com calma, sem pressa, e você sai com todas as dúvidas respondidas.</p>
+        </article>
+        <article class="pillar rv">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.4-9.3C1.2 8.1 3.4 4.5 7 4.5c2 0 3.6 1.1 5 2.8 1.4-1.7 3-2.8 5-2.8 3.6 0 5.8 3.6 4.4 7.2C19.5 16.4 12 21 12 21z"/></svg></div>
+          <h3>Foco na <b>saúde e bem-estar</b></h3>
+          <p>Prevenção, vacinas e acompanhamento para que ele viva mais e melhor.</p>
+        </article>
+        <article class="pillar rv">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></div>
+          <h3>Um espaço seguro <b>para o seu pet</b></h3>
+          <p>Ambiente limpo e acolhedor, pensado para cães e gatos se sentirem tranquilos.</p>
+        </article>
+        <article class="pillar rv">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg></div>
+          <h3>Equipe qualificada <b>e sempre pronta</b></h3>
+          <p>Do atendimento simples à cirurgia mais complexa, com os mesmos profissionais que você já conhece.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESPECIALIDADES -->
+  <section class="spec" id="especialidades" data-stop>
+    <div class="wrap">
+      <div class="head rv">
+        <div class="row"><span class="node"></span><span class="eyebrow">Especialidades</span></div>
+        <h2>Um especialista para cada <span class="script" style="font-size:1.15em">cuidado</span></h2>
+        <p>Além do clínico geral, a My Pets reúne especialistas que acompanham seu pet de forma individual. Toque em uma especialidade para conhecer.</p>
+      </div>
+      <div class="stage">
+        <div class="spec-list rv" role="tablist" aria-label="Especialidades" id="specList"></div>
+        <article class="spec-panel rv" id="specPanel" role="tabpanel" aria-live="polite">
+          <div class="art" id="specArt"><div class="halo"></div><span class="num" id="specNum"></span><svg class="big" id="specBig" viewBox="0 0 64 64"></svg></div>
+          <div class="body" id="specBody"></div>
+        </article>
+      </div>
+      <div class="services rv"><em>Também oferecemos</em><span>Consultas</span><span>Exames</span><span>Vacinas</span><span>Cirurgias e castração</span><span>Banho e tosa</span></div>
+    </div>
+  </section>
+
+  <!-- CONVÊNIOS -->
+  <section class="conv" id="convenios" data-stop>
+    <div class="wrap">
+      <div class="band">
+        <div class="lay">
+          <div>
+            <div class="head rv">
+              <div class="row"><span class="node"></span><span class="eyebrow">Convênios</span></div>
+              <h2>Aceitamos o plano <span class="script" style="font-size:1.15em">do seu pet</span></h2>
+              <p>Atendemos pelos convênios <b>Doglife</b>, <b>Petlife</b> e <b>Petlove</b>. Traga a carteirinha e agende a consulta com a gente.</p>
+            </div>
+            <p class="note rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16v.5"/></svg>A cobertura de cada procedimento depende do seu plano. Fale com a recepção pelo WhatsApp para confirmar antes do atendimento.</p>
+            <div style="margin-top:24px" class="rv"><a class="btn btn-primary" href="https://wa.me/5511994181498" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Agendar com meu convênio</a></div>
+          </div>
+          <div>
+            <div class="cards rv" id="cards">
+              <div class="card k1" tabindex="0" role="button" aria-pressed="false" aria-label="Doglife — virar cartão">
+                <div class="face front">
+                  <svg class="deco" viewBox="0 0 64 64" fill="#fff"><use href="#paw"/></svg>
+                  <div><div class="chipm"></div></div>
+                  <div><div class="label">Convênio aceito</div><div class="name">Doglife</div></div>
+                  <div class="foot"><span>My Pets<br>Boturussu</span><svg viewBox="0 0 64 64" fill="#fff"><use href="#paw"/></svg></div>
+                </div>
+                <div class="face back"><h4>Doglife</h4><p>Consultas, vacinas e exames conforme a cobertura do seu plano Doglife.</p><a class="go" href="https://wa.me/5511994181498" target="_blank" rel="noopener">Agende pelo WhatsApp →</a></div>
+              </div>
+              <div class="card k2" tabindex="0" role="button" aria-pressed="false" aria-label="Petlife — virar cartão">
+                <div class="face front">
+                  <svg class="deco" viewBox="0 0 64 64" fill="#fff"><use href="#paw"/></svg>
+                  <div><div class="chipm"></div></div>
+                  <div><div class="label">Convênio aceito</div><div class="name">Petlife</div></div>
+                  <div class="foot"><span>My Pets<br>Boturussu</span><svg viewBox="0 0 64 64" fill="#fff"><use href="#paw"/></svg></div>
+                </div>
+                <div class="face back"><h4>Petlife</h4><p>Atendimento para cães e gatos cobertos pelo Petlife, com a mesma equipe de sempre.</p><a class="go" href="https://wa.me/5511994181498" target="_blank" rel="noopener">Agende pelo WhatsApp →</a></div>
+              </div>
+              <div class="card k3" tabindex="0" role="button" aria-pressed="false" aria-label="Petlove — virar cartão">
+                <div class="face front">
+                  <svg class="deco" viewBox="0 0 64 64" fill="#fff"><use href="#paw"/></svg>
+                  <div><div class="chipm"></div></div>
+                  <div><div class="label">Convênio aceito</div><div class="name">Petlove</div></div>
+                  <div class="foot"><span>My Pets<br>Boturussu</span><svg viewBox="0 0 64 64" fill="#fff"><use href="#paw"/></svg></div>
+                </div>
+                <div class="face back"><h4>Petlove</h4><p>Use seu plano de saúde Petlove nas consultas e procedimentos cobertos.</p><a class="go" href="https://wa.me/5511994181498" target="_blank" rel="noopener">Agende pelo WhatsApp →</a></div>
+              </div>
+            </div>
+            <p class="cards-hint">Toque em um cartão para virar</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVALIAÇÕES -->
+  <section class="rev" id="avaliacoes" data-stop>
+    <div class="wrap">
+      <div class="head rv">
+        <div class="row"><span class="node"></span><span class="eyebrow">Avaliações no Google</span></div>
+        <h2>Quem cuida, <span class="script" style="font-size:1.15em">recomenda</span></h2>
+        <p>Tutores de cães e gatos da região contam como foi o atendimento.</p>
+      </div>
+      <div class="lay">
+        <aside class="score rv" aria-label="Nota no Google">
+          <div class="g"><svg viewBox="0 0 24 24"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3z"/><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.4 14a6 6 0 0 1 0-3.9V7.5H3.1a10 10 0 0 0 0 9z"/><path fill="#EA4335" d="M12 6c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.5L6.4 10C7.2 7.8 9.4 6 12 6z"/></svg>Google</div>
+          <div class="big"><strong id="scoreNum">4,7</strong><span class="stars" aria-label="4,7 de 5 estrelas"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg style="opacity:.75"><use href="#star"/></svg></span></div>
+          <div class="count">Baseado em <b>215 avaliações</b></div>
+          <div class="bars pre" id="bars">
+            <div><span>5</span><i style="--w:89.8%"></i><span>193</span></div>
+            <div><span>4</span><i style="--w:2.3%"></i><span>5</span></div>
+            <div><span>3</span><i style="--w:3.3%"></i><span>7</span></div>
+            <div><span>2</span><i style="--w:.5%"></i><span>1</span></div>
+            <div><span>1</span><i style="--w:4.2%"></i><span>9</span></div>
+          </div>
+          <a class="btn btn-ghost" href="https://www.google.com/maps/place/My+Pets+Clinica+Veterin%C3%A1ria/@-23.493311,-46.4820017,17z" target="_blank" rel="noopener">Ver todas no Google</a>
+        </aside>
+        <div class="quotes">
+          <figure class="q rv" style="margin:0">
+            <span class="mark">“</span>
+            <blockquote>Saí da zona norte para levar meus gatos, um deles renal. Fomos muito bem atendidos da recepção até a consulta, com todo o cuidado e atenção, e ainda tiraram dúvidas sobre alimentação, água e enriquecimento ambiental.</blockquote>
+            <figcaption class="who"><span class="av" style="background:#7A8A70">L</span><span><b>Lívia M.</b><small><span class="stars"><svg style="width:12px;height:12px"><use href="#star"/></svg><svg style="width:12px;height:12px"><use href="#star"/></svg><svg style="width:12px;height:12px"><use href="#star"/></svg><svg style="width:12px;height:12px"><use href="#star"/></svg><svg style="width:12px;height:12px"><use href="#star"/></svg></span> · há 3 meses</small></span></figcaption>
+          </figure>
+          <figure class="q rv" style="margin:0">
+            <blockquote>Levo meu cachorro desde 2022 e o atendimento sempre foi de primeira, do simples aos cirúrgicos mais complexos. Estão sempre prontos pra qualquer emergência!</blockquote>
+            <figcaption class="who"><span class="av" style="background:#C98A84">T</span><span><b>Thay M.</b><small>★★★★★ · há 2 meses</small></span></figcaption>
+          </figure>
+          <figure class="q rv" style="margin:0">
+            <blockquote>As médicas e a assistente são muito atenciosas e solícitas, inclusive pelo WhatsApp. Comecei com minha primeira gata, depois a segunda e agora um cachorrinho: todos são pacientes da clínica.</blockquote>
+            <figcaption class="who"><span class="av" style="background:#6E5240">J</span><span><b>Juliana Q.</b><small>★★★★★ · há 2 meses</small></span></figcaption>
+          </figure>
+          <figure class="q rv" style="margin:0">
+            <blockquote>Clínica nota mil. Levamos 3 gatos para castração e fomos muito bem atendidos, sempre com muita atenção e carinho com os pets. Recomendamos com certeza.</blockquote>
+            <figcaption class="who"><span class="av" style="background:#B5766F">E</span><span><b>Emilio O.</b><small>★★★★★ · há 3 meses</small></span></figcaption>
+          </figure>
+          <figure class="q rv" style="margin:0">
+            <blockquote>A Dra. Jéssica cuida do meu cachorrinho e dos meus gatinhos e é nota 10! Gosto muito do banho e tosa também, os animais são muito bem cuidados.</blockquote>
+            <figcaption class="who"><span class="av" style="background:#8C9C80">M</span><span><b>Marly C.</b><small>★★★★★ · há 3 meses</small></span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISITA -->
+  <section class="visit" id="visita" data-stop>
+    <div class="wrap">
+      <div class="head rv">
+        <div class="row"><span class="node"></span><span class="eyebrow">Como chegar</span></div>
+        <h2>Venha nos <span class="script" style="font-size:1.15em">visitar</span></h2>
+        <p>Estamos na Avenida Boturussu, ao lado do Mini Extra.</p>
+      </div>
+      <div class="lay">
+        <div class="info">
+          <div class="row-i rv"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><div><small>Endereço</small><b>Av. Boturussu, 1781</b><p>Parque Boturussu · Ermelino Matarazzo · São Paulo/SP · CEP 03803-140</p></div></div>
+          <div class="row-i rv"><span class="ic" style="background:var(--sage-soft);color:var(--sage)"><svg><use href="#wa"/></svg></span><div><small>WhatsApp</small><b id="t-wa">(11) 99418-1498</b><p>Agendamentos e dúvidas</p></div><button class="copy" data-copy="t-wa">Copiar</button></div>
+          <div class="row-i rv"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span><div><small>Telefone</small><b id="t-tel">(11) 2306-6665</b><p>Atendimento para cães e gatos</p></div><button class="copy" data-copy="t-tel">Copiar</button></div>
+          <div class="row-i rv"><span class="ic" style="background:var(--sage-soft);color:var(--sage)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></span><div><small>Instagram</small><b>@clinicavetmypets</b><p>Novidades, dicas e nossos pacientes</p></div></div>
+        </div>
+        <div class="mapcard rv">
+          <canvas id="map" aria-hidden="true"></canvas>
+          <div class="pin"><div class="dot"><span><img src="assets/logo.webp" alt=""></span></div><div class="pulse"></div></div>
+          <div class="cap"><div><b>My Pets Boturussu</b><p>Ao lado do Mini Extra</p></div><a class="btn btn-primary" href="https://www.google.com/maps/place/My+Pets+Clinica+Veterin%C3%A1ria/@-23.493311,-46.4820017,17z" target="_blank" rel="noopener">Abrir no Maps</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><div class="sig">cuidado e carinho em cada patinha</div><p>My Pets Boturussu · Clínica Veterinária · Av. Boturussu, 1781 · São Paulo/SP</p></div>
+    <div class="social">
+      <a href="https://www.instagram.com/clinicavetmypets/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+      <a href="https://wa.me/5511994181498" target="_blank" rel="noopener" aria-label="WhatsApp"><svg><use href="#wa"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/5511994181498" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp"><svg><use href="#wa"/></svg></a>
+
+<script>
+document.documentElement.classList.add('js');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- especialidades ---------- */
+const B='currentColor';
+const SPECS=[
+ {k:'cardio',t:'Cardiologia',s:'Coração',bg:'var(--blush-soft)',c:'var(--rose)',
+  d:'Avaliação do coração com exames como ecocardiograma e eletrocardiograma. Importante para raças predispostas, pets idosos e antes de cirurgias.',
+  tags:['Sopros cardíacos','Ecocardiograma','Check-up pré-cirúrgico','Pets idosos'],
+  svg:'<path d="M32 54S10 41 8 26C6.5 15 15 9 22 11c4 1 7.5 4 10 8 2.5-4 6-7 10-8 7-2 15.5 4 14 15-2 15-24 28-24 28z" fill="#E3B3AA" stroke="#6E5240" stroke-width="2.2" stroke-linejoin="round"/><path d="M12 32h11l4-8 6 16 4-10 3 5h12" fill="none" stroke="#6E5240" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>'},
+ {k:'derma',t:'Dermatologia',s:'Pele e pelagem',bg:'var(--sage-soft)',c:'var(--sage)',
+  d:'Coceira, queda de pelo, alergias e otites tratadas na causa. Investigamos o que está por trás das lesões de pele para aliviar seu pet de vez.',
+  tags:['Alergias','Coceira','Otites','Queda de pelo'],
+  svg:'<circle cx="32" cy="32" r="22" fill="#E4E9DD" stroke="#6E5240" stroke-width="2.2"/><g fill="#7A8A70"><use href="#paw" x="18" y="18" width="28" height="28"/></g><path d="M10 20c4-3 8-3 12 0M42 46c4 3 8 3 12 0" stroke="#C98A84" stroke-width="2.2" fill="none" stroke-linecap="round"/>'},
+ {k:'nefro',t:'Nefrologia e Urologia',s:'Rins e trato urinário',bg:'var(--blush-soft)',c:'var(--rose)',
+  d:'Acompanhamento de doença renal crônica, cálculos e infecções urinárias, muito comuns em gatos. Com controle certo, o pet renal vive bem por anos.',
+  tags:['Doença renal crônica','Cálculos','Infecção urinária','Gatos renais'],
+  svg:'<path d="M24 12c-9 0-14 9-14 20s5 20 13 20c6 0 8-5 6-10-1.5-3.5-1.5-6 1-9 2.5-3 2.5-7 0-10C28 20 30 12 24 12z" fill="#E3B3AA" stroke="#6E5240" stroke-width="2.2"/><path d="M40 12c9 0 14 9 14 20s-5 20-13 20c-6 0-8-5-6-10 1.5-3.5 1.5-6-1-9-2.5-3-2.5-7 0-10C36 20 34 12 40 12z" fill="#F1CFC8" stroke="#6E5240" stroke-width="2.2"/><path d="M30 33h4" stroke="#7A8A70" stroke-width="3" stroke-linecap="round"/>'},
+ {k:'orto',t:'Ortopedia',s:'Ossos e articulações',bg:'var(--sage-soft)',c:'var(--sage)',
+  d:'Fraturas, luxação de patela, displasia e dores articulares. Diagnóstico por imagem e tratamento clínico ou cirúrgico para devolver o passeio ao seu pet.',
+  tags:['Fraturas','Luxação de patela','Displasia','Dor articular'],
+  svg:'<g transform="rotate(-35 32 32)"><rect x="17" y="27" width="30" height="10" rx="5" fill="#FBF6EF" stroke="#6E5240" stroke-width="2.2"/><circle cx="15" cy="25" r="6" fill="#FBF6EF" stroke="#6E5240" stroke-width="2.2"/><circle cx="15" cy="39" r="6" fill="#FBF6EF" stroke="#6E5240" stroke-width="2.2"/><circle cx="49" cy="25" r="6" fill="#FBF6EF" stroke="#6E5240" stroke-width="2.2"/><circle cx="49" cy="39" r="6" fill="#FBF6EF" stroke="#6E5240" stroke-width="2.2"/><rect x="18" y="28.8" width="28" height="6.4" fill="#FBF6EF"/></g><path d="M44 10l4 4M50 8v5M54 12h-5" stroke="#7A8A70" stroke-width="2.2" stroke-linecap="round"/>'},
+ {k:'onco',t:'Oncologia',s:'Tratamento de tumores',bg:'var(--blush-soft)',c:'var(--rose)',
+  d:'Diagnóstico precoce de nódulos e tumores e planos de tratamento que priorizam o conforto e a qualidade de vida do seu pet em cada etapa.',
+  tags:['Nódulos e caroços','Quimioterapia','Cuidados paliativos','Diagnóstico precoce'],
+  svg:'<path d="M32 30c-6-8-10-14-10-19a10 10 0 0 1 20 0c0 5-4 11-10 19z" fill="none" stroke="#6E5240" stroke-width="2.2"/><path d="M32 30L20 54M32 30l12 24" stroke="#E3B3AA" stroke-width="9" stroke-linecap="round"/><path d="M32 30L20 54M32 30l12 24" stroke="#6E5240" stroke-width="2.2" stroke-linecap="round" fill="none"/><path d="M26 11a6 6 0 0 1 12 0c0 3-2.5 7-6 11.5C28.5 18 26 14 26 11z" fill="#E3B3AA"/>'},
+ {k:'odonto',t:'Odontologia',s:'Saúde bucal',bg:'var(--sage-soft)',c:'var(--sage)',
+  d:'Limpeza de tártaro, extrações e tratamento de gengivite. Mau hálito não é normal: uma boca saudável protege também o coração e os rins.',
+  tags:['Limpeza de tártaro','Mau hálito','Gengivite','Extrações'],
+  svg:'<path d="M20 10c-6 0-10 5-9 12 1 6 3 9 4 16 1 6 2 14 6 14 3 0 4-6 5-11 .8-3.5 2-5 6-5s5.2 1.5 6 5c1 5 2 11 5 11 4 0 5-8 6-14 1-7 3-10 4-16 1-7-3-12-9-12-4 0-7 2-12 2s-8-2-12-2z" fill="#FBF6EF" stroke="#6E5240" stroke-width="2.2" stroke-linejoin="round"/><path d="M47 6l1.5 3.5L52 11l-3.5 1.5L47 16l-1.5-3.5L42 11l3.5-1.5z" fill="#7A8A70"/>'},
+ {k:'felina',t:'Medicina Felina',s:'Cuidado só para gatos',bg:'var(--blush-soft)',c:'var(--rose)',
+  d:'Gatos não são cães pequenos. Manejo gentil, consultas sem estresse e atenção às doenças típicas dos felinos, da alimentação ao enriquecimento ambiental.',
+  tags:['Manejo cat friendly','Check-up felino','Enriquecimento ambiental','Castração'],
+  svg:'<path d="M14 26l-2-16 12 8a24 24 0 0 1 16 0l12-8-2 16c2 4 3 8 3 12 0 10-9 16-21 16S11 48 11 38c0-4 1-8 3-12z" fill="#FBF6EF" stroke="#6E5240" stroke-width="2.2" stroke-linejoin="round"/><path d="M15 16l1 7 5-3z" fill="#E3B3AA"/><path d="M49 16l-1 7-5-3z" fill="#E3B3AA"/><path d="M22 34c2-2 4-2 6 0M36 34c2-2 4-2 6 0" stroke="#6E5240" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M30 40l2 2 2-2z" fill="#E3B3AA" stroke="#6E5240" stroke-width="1.5" stroke-linejoin="round"/><path d="M6 38l12 2M6 44l12-1M58 38l-12 2M58 44l-12-1" stroke="#7A8A70" stroke-width="1.6" stroke-linecap="round"/>'}
+];
+const list=document.getElementById('specList');
+SPECS.forEach((s,i)=>{
+  const b=document.createElement('button');
+  b.className='sp'; b.type='button'; b.setAttribute('role','tab'); b.id='tab-'+s.k;
+  b.setAttribute('aria-controls','specPanel');
+  b.innerHTML=`<span class="ic"><svg viewBox="0 0 64 64">${s.svg}</svg></span><span><b>${s.t}</b><small>${s.s}</small></span>`;
+  b.addEventListener('click',()=>select(i,true));
+  b.addEventListener('mouseenter',()=>{ if(matchMedia('(hover:hover)').matches) select(i,false) });
+  list.appendChild(b);
+});
+const more=document.createElement('div'); more.className='sp more';
+more.innerHTML='<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#C98A84" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span><span><b>E muito mais</b><small>Pergunte pelo WhatsApp</small></span>';
+list.appendChild(more);
+let cur=-1;
+function select(i,focus){
+  if(i===cur) return; cur=i; const s=SPECS[i];
+  [...list.querySelectorAll('[role=tab]')].forEach((t,j)=>{t.setAttribute('aria-selected',j===i);t.tabIndex=j===i?0:-1});
+  document.getElementById('specArt').style.background=s.bg;
+  const big=document.getElementById('specBig'); big.innerHTML=s.svg; big.classList.remove('swap'); void big.offsetWidth; big.classList.add('swap');
+  document.getElementById('specNum').textContent=String(i+1).padStart(2,'0')+' / 0'+SPECS.length;
+  const body=document.getElementById('specBody');
+  body.innerHTML=`<span class="eyebrow" style="color:${s.c}">${s.s}</span><h3>${s.t}</h3><p class="desc">${s.d}</p><ul>${s.tags.map(t=>`<li>${t}</li>`).join('')}</ul><div><a class="btn btn-primary" href="https://wa.me/5511994181498" target="_blank" rel="noopener"><svg><use href="#wa"/></svg>Agendar avaliação</a></div>`;
+  body.classList.remove('swap'); void body.offsetWidth; body.classList.add('swap');
+  document.getElementById('specPanel').setAttribute('aria-labelledby','tab-'+s.k);
+}
+list.addEventListener('keydown',e=>{
+  if(!['ArrowDown','ArrowRight','ArrowUp','ArrowLeft'].includes(e.key)) return;
+  e.preventDefault(); const n=(cur+(e.key==='ArrowDown'||e.key==='ArrowRight'?1:-1)+SPECS.length)%SPECS.length;
+  select(n); list.querySelectorAll('[role=tab]')[n].focus();
+});
+select(0);
+
+/* ---------- convênios: flip ---------- */
+document.querySelectorAll('.card').forEach(c=>{
+  const t=()=>{c.classList.toggle('flip');c.setAttribute('aria-pressed',c.classList.contains('flip'))};
+  c.addEventListener('click',e=>{ if(e.target.closest('a')) return; t(); });
+  c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}});
+});
+
+/* ---------- copiar ---------- */
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{
+  const el=document.getElementById(b.dataset.copy); const txt=el.textContent;
+  const done=()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar',1600)};
+  const sel=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selecionado'};
+  try{navigator.clipboard.writeText(txt).then(done,sel)}catch(e){sel()}
+}));
+
+/* ---------- header ---------- */
+const hdr=document.getElementById('top');
+const navLinks=[...document.querySelectorAll('.nav a')];
+
+/* ---------- reveal ---------- */
+const rvs=[...document.querySelectorAll('.rv')];
+if(!reduce && 'IntersectionObserver' in window){
+  rvs.forEach(el=>{ if(el.getBoundingClientRect().top>innerHeight*0.95) el.classList.add('below') });
+  const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.remove('below'); io.unobserve(e.target);} }),{rootMargin:'0px 0px -8% 0px'});
+  rvs.forEach((el,i)=>{ el.style.transitionDelay=(i%4)*70+'ms'; io.observe(el) });
+}
+/* barras de nota */
+const bars=document.getElementById('bars');
+new IntersectionObserver((es,o)=>es.forEach(e=>{if(e.isIntersecting){bars.classList.remove('pre');o.disconnect()}})).observe(bars);
+if(reduce) bars.classList.remove('pre');
+
+/* ---------- trilha de patinhas ---------- */
+const svg=document.getElementById('trail'), main=document.getElementById('main');
+const base=svg.querySelector('.base'), live=svg.querySelector('.live'), pawsG=svg.querySelector('.paws');
+let len=0, pawEls=[], nodes=[];
+function buildTrail(){
+  const mr=main.getBoundingClientRect(), mt=mr.top+scrollY;
+  const H=main.offsetHeight, W=main.offsetWidth;
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`); svg.style.height=H+'px';
+  nodes=[...document.querySelectorAll('.head .node')];
+  const narrow=W<700;
+  // ponto inicial: abaixo do medalhão
+  const med=document.getElementById('medal').getBoundingClientRect();
+  const pts=[[med.left+med.width/2-mr.left, med.bottom+scrollY-mt+10]];
+  nodes.forEach(n=>{const r=n.getBoundingClientRect(); pts.push([r.left+r.width/2-mr.left, r.top+r.height/2+scrollY-mt])});
+  let d=`M${pts[0][0]},${pts[0][1]}`;
+  for(let i=1;i<pts.length;i++){
+    const [x0,y0]=pts[i-1],[x1,y1]=pts[i], dy=y1-y0;
+    const sw=narrow? Math.min(W*0.35,120) : W*0.32;
+    const side=i%2?1:-1;
+    const cx=Math.max(8,Math.min(W-8,(x0+x1)/2+side*sw));
+    d+=` C${x0},${y0+dy*0.35} ${cx},${y0+dy*0.3} ${cx},${y0+dy*0.55} S${x1},${y1-dy*0.25} ${x1},${y1-12}`;
+  }
+  base.setAttribute('d',d); live.setAttribute('d',d);
+  len=live.getTotalLength();
+  live.style.strokeDasharray=len; live.style.strokeDashoffset=len;
+  pawsG.innerHTML=''; pawEls=[];
+  const step=narrow?110:130;
+  for(let l=40;l<len-30;l+=step){
+    const p=live.getPointAtLength(l), q=live.getPointAtLength(Math.min(len,l+2));
+    const ang=Math.atan2(q.y-p.y,q.x-p.x)*180/Math.PI+90;
+    const off=(pawEls.length%2?9:-9);
+    const nx=Math.cos((ang)*Math.PI/180)*off, ny=Math.sin((ang)*Math.PI/180)*off;
+    const u=document.createElementNS('http://www.w3.org/2000/svg','use');
+    u.setAttribute('href','#paw'); u.setAttribute('width',16); u.setAttribute('height',16);
+    u.setAttribute('x',p.x+nx-8); u.setAttribute('y',p.y+ny-8);
+    u.setAttribute('transform',`rotate(${ang} ${p.x+nx} ${p.y+ny})`);
+    u.setAttribute('class','paw'); u.dataset.l=l;
+    pawsG.appendChild(u); pawEls.push(u);
+  }
+  update();
+}
+function update(){
+  hdr.classList.toggle('scrolled',scrollY>10);
+  if(!len) return;
+  const mt=main.getBoundingClientRect().top+scrollY;
+  // a ponta da trilha acompanha 65% da altura da tela
+  const tipY=scrollY+innerHeight*0.65-mt;
+  // encontra comprimento correspondente a tipY (busca binária)
+  let lo=0,hi=len; for(let k=0;k<18;k++){const m=(lo+hi)/2; if(live.getPointAtLength(m).y<tipY) lo=m; else hi=m;}
+  const L=reduce?len:lo;
+  live.style.strokeDashoffset=len-L;
+  pawEls.forEach(p=>p.classList.toggle('on',+p.dataset.l<L));
+  nodes.forEach(n=>{const r=n.getBoundingClientRect(); n.classList.toggle('lit', r.top<innerHeight*0.65)});
+  // nav ativo
+  let act=null; document.querySelectorAll('[data-stop]').forEach(s=>{ if(s.getBoundingClientRect().top<innerHeight*0.4) act=s.id });
+  navLinks.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+act));
+  // parallax suave no medalhão
+  if(!reduce){const m=document.getElementById('medal'); m.style.transform=`translateY(${Math.min(scrollY,600)*0.08}px)`}
+}
+let raf=0; addEventListener('scroll',()=>{if(!raf) raf=requestAnimationFrame(()=>{raf=0;update()})},{passive:true});
+let rt; addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(buildTrail,150)});
+addEventListener('load',buildTrail); document.fonts && document.fonts.ready.then(buildTrail);
+buildTrail();
+new ResizeObserver(()=>{clearTimeout(rt);rt=setTimeout(buildTrail,150)}).observe(main);
+
+/* ---------- mapa ilustrado ---------- */
+function drawMap(){
+  const c=document.getElementById('map'), r=c.getBoundingClientRect(), dpr=devicePixelRatio||1;
+  c.width=r.width*dpr; c.height=r.height*dpr; const x=c.getContext('2d'); x.scale(dpr,dpr);
+  const cs=getComputedStyle(document.documentElement);
+  const g=n=>cs.getPropertyValue(n).trim();
+  const W=r.width,H=r.height;
+  x.fillStyle=g('--sage-soft'); x.fillRect(0,0,W,H);
+  // quarteirões
+  let seed=7; const rnd=()=>(seed=(seed*9301+49297)%233280)/233280;
+  x.fillStyle=g('--paper');
+  for(let yy=-20;yy<H;yy+=58) for(let xx=-30;xx<W;xx+=74){ x.globalAlpha=.55+rnd()*.35; x.beginPath(); x.roundRect(xx+rnd()*6,yy+rnd()*6,58,44,6); x.fill(); }
+  x.globalAlpha=1;
+  // praça
+  x.fillStyle=g('--sage'); x.globalAlpha=.35; x.beginPath(); x.roundRect(W*.72,H*.12,W*.2,H*.22,14); x.fill(); x.globalAlpha=1;
+  // avenida Boturussu (diagonal)
+  x.strokeStyle=g('--blush'); x.lineWidth=18; x.lineCap='round';
+  x.beginPath(); x.moveTo(-20,H*.85); x.bezierCurveTo(W*.3,H*.55,W*.6,H*.5,W+20,H*.18); x.stroke();
+  x.strokeStyle=g('--paper'); x.lineWidth=2; x.setLineDash([10,10]);
+  x.beginPath(); x.moveTo(-20,H*.85); x.bezierCurveTo(W*.3,H*.55,W*.6,H*.5,W+20,H*.18); x.stroke(); x.setLineDash([]);
+  x.fillStyle=g('--brown'); x.font='600 11px Montserrat, sans-serif'; x.save(); x.translate(W*.16,H*.7); x.rotate(-.42); x.fillText('AV. BOTURUSSU',0,0); x.restore();
+}
+drawMap(); addEventListener('resize',()=>setTimeout(drawMap,160));
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',drawMap);
+new MutationObserver(drawMap).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+</script>
+</body>
+</html>
