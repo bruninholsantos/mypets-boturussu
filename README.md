@@ -2,7 +2,7 @@
 
 Site institucional da clínica veterinária My Pets Boturussu (Parque Boturussu, São Paulo/SP).
 
-- Especialidades: Cardiologia, Dermatologia, Nefrologia e Urologia, Ortopedia, Oncologia, Odontologia e Medicina Felina
+- Especialidades: Cardiologia, Dermatologia, Endocrinologia, Nefrologia e Urologia, Odontologia, Oftalmologia, Oncologia, Ortopedia, Pneumologia e Medicina Felina
 - Convênios: Doglife, Petlife e Petlove
 - Avaliações do Google, endereço e contato
 
