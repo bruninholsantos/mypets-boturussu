@@ -10,6 +10,7 @@
 <link rel="canonical" href="https://clinicamypets.com.br/">
 <meta name="author" content="My Pets Boturussu">
 <meta name="theme-color" content="#F6F1EA">
+<meta name="color-scheme" content="light only">
 <meta name="format-detection" content="telephone=no">
 <meta name="geo.region" content="BR-SP">
 <meta name="geo.placename" content="São Paulo">
@@ -258,15 +259,8 @@
   --f-body:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-script:"Allura","Brush Script MT",cursive;
   --r:22px; --maxw:1160px;
+  color-scheme: light;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --cream:#1F1813; --paper:#2A211B; --brown:#E9CDB8; --brown-ink:#F5E8DC; --sage:#A9BA9D; --sage-soft:#2C3328;
-  --blush:#D89D94; --blush-soft:#3A2925; --rose:#E3A7A0; --line:#3B2F27; --muted:#BFAA9A;
-  --star:#E8B85A; --on-accent:#1F1813; --shadow:rgba(0,0,0,.35); color-scheme:dark}}
-:root[data-theme="dark"]{
-  --cream:#1F1813; --paper:#2A211B; --brown:#E9CDB8; --brown-ink:#F5E8DC; --sage:#A9BA9D; --sage-soft:#2C3328;
-  --blush:#D89D94; --blush-soft:#3A2925; --rose:#E3A7A0; --line:#3B2F27; --muted:#BFAA9A;
-  --star:#E8B85A; --on-accent:#1F1813; --shadow:rgba(0,0,0,.35); color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -340,7 +334,7 @@ section{position:relative;z-index:1}
 .bgpaw{position:absolute;color:var(--blush);opacity:.28;z-index:0;pointer-events:none}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes bob{50%{transform:translateY(-8px)}}
-@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.medallion{max-width:340px;order:-1}.chip.c1{left:0}.chip.c2{right:0}}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.medallion{max-width:340px;order:-1}.medallion .disc img{width:64%}.chip.c1{left:0;top:4%}.chip.c2{right:0;bottom:6%}.chip.c3{bottom:-4%}}
 
 /* ---------- pilares ---------- */
 .pillars{padding-block:20px clamp(70px,9vw,120px)}
